@@ -81,7 +81,11 @@ const NavigationBar: React.FC = () => {
             <MenuItem
               key={page}
               component="a"
-              href={`/preflop-range-solver/${page}`}
+              href={
+                location.pathname.split('/').includes('preflop-range-solver')
+                  ? `/${page}`
+                  : `/preflop-range-solver/${page}`
+              }
               onClick={handleClose}
             >
               <ListItemIcon>
