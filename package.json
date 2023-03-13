@@ -1,6 +1,7 @@
 {
   "name": "preflop-solver",
   "version": "0.0.0",
+  "homepage": "https://seanfloler.github.io/preflop-range-solver",
   "license": "MIT",
   "scripts": {
     "start": "nx serve",
