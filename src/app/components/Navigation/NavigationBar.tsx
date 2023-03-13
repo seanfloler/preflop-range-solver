@@ -66,7 +66,7 @@ const NavigationBar: React.FC = () => {
             edge="start"
             color="inherit"
             aria-label="menu"
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/Home')}
           >
             <HomeIcon />
           </IconButton>
@@ -81,7 +81,7 @@ const NavigationBar: React.FC = () => {
             <MenuItem
               key={page}
               component="a"
-              href={'/' + page}
+              href={`preflop-range-solver/${page}`}
               onClick={handleClose}
             >
               <ListItemIcon>

@@ -8,7 +8,8 @@
     "build": "nx build",
     "test": "nx test",
     "predeploy": "npm run build -- --prod --baseHref=/preflop-range-solver/",
-    "deploy": "gh-pages -d dist/preflop-solver"
+    "deploy-gh": "gh-pages -d dist/preflop-solver",
+    "deploy": "npm run predeploy; npm run deploy-gh;"
   },
   "private": true,
   "dependencies": {

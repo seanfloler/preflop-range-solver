@@ -47,7 +47,7 @@ const RangeViewer: React.FC<Props> = ({
     setPosition(ranges[nextIndex]);
   };
   function showRange(): React.ReactNode {
-    if (ranges.length >= 1) {
+    if (ranges.length >= 2) {
       return (
         <RangeViewerButtons
           ranges={ranges}
