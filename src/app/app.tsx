@@ -1,15 +1,13 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.scss';
+import NavigationBar from './components/Navigation/NavigationBar';
+import { BrowserRouter, Routes } from 'react-router-dom';
+import routes, { renderRoutes } from 'src/config/routes';
 
-import NxWelcome from './nx-welcome';
-
-export function App() {
+function App() {
   return (
-    <>
-      <NxWelcome title="preflop-solver" />
-
-      <div />
-    </>
+    <BrowserRouter>
+      <NavigationBar />
+      <Routes>{renderRoutes(routes)}</Routes>
+    </BrowserRouter>
   );
 }
 
