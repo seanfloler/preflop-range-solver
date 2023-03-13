@@ -1,10 +1,14 @@
-import RFIVs3Bet from 'src/app/pages/RFIVs3Bet.page';
 import Home from 'src/app/pages/Home.page';
 import { Route, RouteProps } from 'react-router-dom';
 import React from 'react';
 import { Box } from '@mui/material';
 import RangeViewer from 'src/app/components/RangeViewer/RangeViewer';
-import { FacingRFIImageMap, RFIPositionImageMap } from './images.config';
+import {
+  assets,
+  FacingRFIImageMap,
+  RFIPositionImageMap,
+  RFIVs3BetImageMap,
+} from './images.config';
 import { RFIPositions, FacingRFIPositions } from 'src/app/models/positions';
 import { Position } from 'src/app/models/position';
 import FlowSelectionPage from 'src/app/pages/FlowSelection.page';
@@ -94,7 +98,61 @@ const routes: RouteConfig[] = [
   },
   {
     path: '/rfi-vs-3bet',
-    element: <RFIVs3Bet />,
+    element: (
+      <FlowSelectionPage
+        routePath="/rfi-vs-3bet"
+        flows={RFIPositions as string[]}
+      />
+    ),
+    children: [
+      ...Object.keys(RFIVs3BetImageMap).map((position) => ({
+        path: `/${position}`,
+        element: (
+          <FlowSelectionPage
+            routePath={`/rfi-vs-3bet/${position}`}
+            flows={Object.keys(
+              RFIVs3BetImageMap[position as Exclude<Position, Position.BB>]
+            )}
+          />
+        ),
+        children: [
+          ...Object.keys(
+            RFIVs3BetImageMap[position as Exclude<Position, Position.BB>]
+          ).map((facing3BetKey) => {
+            return {
+              path: `/${facing3BetKey.replace(/ /g, '_')}`,
+              element: (
+                <RangeViewer
+                  imageSrc={
+                    RFIVs3BetImageMap[
+                      position as Exclude<Position, Position.BB>
+                    ][facing3BetKey]
+                  }
+                  alt={facing3BetKey}
+                  ranges={Object.keys(
+                    RFIVs3BetImageMap[
+                      position as Exclude<Position, Position.BB>
+                    ]
+                  )}
+                  parentRoute={`/rfi-vs-3bet/${position}`}
+                />
+              ),
+            };
+          }),
+        ],
+      })),
+    ],
+  },
+  {
+    path: '/sb-limp-vs-bb-3bet',
+    element: (
+      <RangeViewer
+        imageSrc={`${assets}/SB_limp_vs_BB_raise.png`}
+        alt="SB limp vs BB 3bet"
+        ranges={[]}
+        parentRoute="/Home"
+      />
+    ),
   },
 ];
 

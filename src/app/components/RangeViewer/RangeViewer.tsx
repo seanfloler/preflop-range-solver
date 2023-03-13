@@ -46,6 +46,20 @@ const RangeViewer: React.FC<Props> = ({
     const nextIndex = index === ranges.length - 1 ? 0 : index + 1;
     setPosition(ranges[nextIndex]);
   };
+  function showRange(): React.ReactNode {
+    if (ranges.length >= 1) {
+      return (
+        <RangeViewerButtons
+          ranges={ranges}
+          range={range}
+          route={parentRoute}
+          onClickPrevious={handlePreviousRange}
+          onClickNext={handleNextRange}
+        />
+      );
+    }
+  }
+
   return (
     <Container>
       <Box
@@ -62,13 +76,7 @@ const RangeViewer: React.FC<Props> = ({
 
       <Box>
         <Image src={imageSrc} alt={alt} />
-        <RangeViewerButtons
-          ranges={ranges}
-          range={range}
-          route={parentRoute}
-          onClickPrevious={handlePreviousRange}
-          onClickNext={handleNextRange}
-        />
+        {showRange()}
       </Box>
     </Container>
   );
