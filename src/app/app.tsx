@@ -4,7 +4,7 @@ import routes, { renderRoutes } from 'src/config/routes';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={'preflop-range-solver'}>
       <NavigationBar />
       <Routes>{renderRoutes(routes)}</Routes>
     </BrowserRouter>
