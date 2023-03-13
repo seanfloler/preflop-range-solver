@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve",
-    "build": "nx build",
+    "build": "nx build; cp -r dist/preflop-rangle-solver/ /docs",
     "test": "nx test",
     "predeploy": "npm run build -- --prod --baseHref=/preflop-range-solver/",
     "deploy": "gh-pages -d dist/preflop-range-solver"
